@@ -5,3 +5,4 @@ settings_dev.py
 *.swp
 *.swo
 wordviewer/fixtures
+*.db
