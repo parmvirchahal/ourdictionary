@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.views.generic import CreateView, ListView, DetailView, RedirectView, DeleteView
 from wordviewer.models import WordEntry, Dictionary
-from wordviewer.views import (register, WordEntryCreationView, WordEntryUpdateView, WordEntryDeletionView, UserListView, UserProfileView, SitePreferencesUpdateView, DictionaryCreationView, WordListView)
+from wordviewer.views import (register, WordEntryCreationView, WordEntryUpdateView, WordEntryDeletionView, UserListView, UserProfileView, SitePreferencesUpdateView, DictionaryCreationView, WordListView, DictionaryList)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import login, logout
 from django.contrib.auth.models import User
@@ -32,6 +32,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^dictionaries/list/$', DictionaryList),
 )
 
 if settings.DEBUG:

@@ -10,6 +10,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 from wordviewer.models import WordEntry, SitePreferences, Dictionary
 from django.core.exceptions import ValidationError
+import json
+from django.http import HttpResponse
 
 class WordEntryForm(forms.ModelForm):
     class Meta:
@@ -180,3 +182,8 @@ class DictionaryCreationView(CreateView):
         object.owner = self.request.user
         object.save()
         return HttpResponseRedirect("/dictionaries/")
+
+def DictionaryList(request):
+    data = {'foo': 'bar', 'hello': 'world', 'test': {'thing': 'that'}}
+    return HttpResponse(json.dumps(data), content_type='application/json')
+    
