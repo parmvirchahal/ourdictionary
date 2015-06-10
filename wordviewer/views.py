@@ -10,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 from wordviewer.models import WordEntry, SitePreferences, Dictionary
 from django.core.exceptions import ValidationError
+from django.core import serializers
 import json
 from django.http import HttpResponse
 
@@ -184,6 +185,6 @@ class DictionaryCreationView(CreateView):
         return HttpResponseRedirect("/dictionaries/")
 
 def DictionaryList(request):
-    data = {'foo': 'bar', 'hello': 'world', 'test': {'thing': 'that'}}
+    objectQuerySet = Dictionary.objects.all()
+    data = serializers.serialize('json', list(objectQuerySet), fields=('subject','owner'), indent=4)
     return HttpResponse(json.dumps(data), content_type='application/json')
-    
