@@ -57,6 +57,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 ROOT_URLCONF = 'urls'
@@ -82,6 +84,7 @@ BASE_INSTALLED_APPS = (
     'django.contrib.admindocs',
     'wordviewer',
     'south',
+    'corsheaders',
 )
 
 LOGGING = {
@@ -111,3 +114,4 @@ LOGGING = {
 WSGI_APPLICATION = 'wsgi.application'
 
 REGISTRATION_TOKEN = ""
+CORS_ORIGIN_ALLOW_ALL = True
